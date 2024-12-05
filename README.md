@@ -46,7 +46,9 @@ Select Build > Rebuild Solution in Visual Studio.
 Run the application:
 Press F5 or select Debug > Start Debugging.
 
-MovieAPI/
+
+---
+## MovieAPI/
 ├── MovieAPI/
 │   ├── Form1.cs             # Main form logic
 │   ├── Form1.Designer.cs    # UI layout
@@ -58,16 +60,16 @@ MovieAPI/
 ├── obj/
 └── README.md                # Project documentation
 
-Contributions 👥
-This project was developed as a group effort. Each member is responsible for contributing to the final deliverable.
-
-Team Members:
+---
+## Contributions 👥
 Gunther Santos
 Erika Ortiz
 Paola Lampe
 Michael Smith
 Yizhuo Hu
-Contributions Needed:
+
+---
+## Contributions Needed:
 Code improvement and optimization.
 UI/UX enhancements.
 Testing and debugging.
