@@ -48,10 +48,10 @@ Press F5 or select Debug > Start Debugging.
 
 ---
 ## Contributions 👥
-** Gunther Santos
-** Erika Ortiz
-** Paola Lampe
-** Michael Smith
+** Gunther Santos n/
+** Erika Ortiz n/
+** Paola Lampe n/
+** Michael Smith n/
 ** Yizhuo Hu
 
 ---
@@ -61,4 +61,21 @@ UI/UX enhancements.
 Testing and debugging.
 Please join the GitHub repository and make your commits to improve the final version of the project.
 
+---
 Screenshots 🖼️
+![image](https://github.com/user-attachments/assets/7734f6eb-aaaf-4390-9d77-9925fb11edcd)
+
+
+---
+MovieAPI/
+├── MovieAPI/
+│   ├── Form1.cs             # Main form logic
+│   ├── Form1.Designer.cs    # UI layout
+│   ├── MovieAPIService.cs   # API integration
+│   └── Program.cs           # Application entry point
+├── Properties/
+│   └── AssemblyInfo.cs
+├── bin/
+├── obj/
+└── README.md                # Project documentation
+
