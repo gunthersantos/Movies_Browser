@@ -43,16 +43,18 @@ This project was developed as a group effort. Each member is responsible for con
 
 Team Members:
 
-Erika
-[Your Name]
-[Other Members]
+Gunther Santos
+Erika Ortiz
+Paola Lampe
+Michael Smith
+Yizhuo Hu
+
 Contributions Needed:
 Code improvement and optimization.
 UI/UX enhancements.
 Testing and debugging.
 Please join the GitHub repository and make your commits to improve the final version of the project.
 
-Screenshots 🖼️
-Include some screenshots here to showcase the application.
+Screenshot 🖼️
 
 ![image](https://github.com/user-attachments/assets/3d13cc27-5dae-4388-83ac-e985c6560c2b)
