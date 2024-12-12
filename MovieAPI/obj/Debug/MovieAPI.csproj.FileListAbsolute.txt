@@ -24,3 +24,16 @@ C:\Users\gunth\Downloads\Rapid Application\MovieAPI\MovieAPI\bin\Debug\Newtonsof
 C:\Users\gunth\Downloads\Rapid Application\MovieAPI\MovieAPI\obj\Debug\MovieAPI.csproj.Up2Date
 C:\Users\gunth\Downloads\Rapid Application\MovieAPI\MovieAPI\obj\Debug\MovieAPI.exe
 C:\Users\gunth\Downloads\Rapid Application\MovieAPI\MovieAPI\obj\Debug\MovieAPI.pdb
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\obj\Debug\MovieAPI.csproj.AssemblyReference.cache
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\obj\Debug\MovieAPI.Form1.resources
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\obj\Debug\MovieAPI.Properties.Resources.resources
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\obj\Debug\MovieAPI.csproj.GenerateResource.cache
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\obj\Debug\MovieAPI.csproj.CoreCompileInputs.cache
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\obj\Debug\MovieAPI.exe
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\obj\Debug\MovieAPI.pdb
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\bin\Debug\MovieAPI.exe.config
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\bin\Debug\MovieAPI.exe
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\bin\Debug\MovieAPI.pdb
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\gunth\Downloads\Rapid Application\Movies_Browser-main\MovieAPI\obj\Debug\MovieAPI.csproj.Up2Date

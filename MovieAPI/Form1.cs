@@ -9,25 +9,37 @@ namespace MovieAPI
 {
     public partial class Form1 : Form
     {
-        private readonly MovieAPIService movieAPI = new MovieAPIService(); // Instância corrigida
-        private List<Movie> movies = new List<Movie>(); // Lista para armazenar os filmes retornados pela pesquisa
-        private readonly List<string> watchlist = new List<string>(); // Lista para armazenar filmes adicionados à lista de observação
+        private readonly MovieAPIService movieAPI = new MovieAPIService(); // Corrected instance
+        private List<Movie> movies = new List<Movie>(); // List to store movies returned by the search
+        private readonly List<string> watchlist = new List<string>(); // List to store movies added to the watchlist
+        private List<string> favoriteMovies = new List<string>(); // List to store favorite movies
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        // Classe Movie para armazenar informações dos filmes
+        // Movie class to store movie information
         public class Movie
         {
             public string Title { get; set; }
             public string Year { get; set; }
             public string ImdbID { get; set; }
-            public string Poster { get; set; } // URL do encarte do filme
+            public string Poster { get; set; } // URL of the movie poster
         }
 
-        // Método para analisar os filmes retornados pela API
+        // Method to validate user input
+        private bool ValidateInput(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                MessageBox.Show("Search query cannot be empty.");
+                return false;
+            }
+            return true;
+        }
+
+        // Method to parse movies returned by the API
         private List<Movie> ParseMovies(string result)
         {
             var json = JsonConvert.DeserializeObject<dynamic>(result);
@@ -42,7 +54,7 @@ namespace MovieAPI
                         Title = item.Title,
                         Year = item.Year,
                         ImdbID = item.imdbID,
-                        Poster = item.Poster // Captura o URL do encarte
+                        Poster = item.Poster
                     });
                 }
             }
@@ -50,17 +62,25 @@ namespace MovieAPI
             return movieList;
         }
 
-        // Evento para pesquisar filmes
+        // Event to search for movies
         private async void Search_btn_Click(object sender, EventArgs e)
         {
             string query = SearchTextBox.Text.Trim();
+            if (!ValidateInput(query)) return;
+
             try
             {
                 string result = await movieAPI.SearchMoviesAsync(query);
-                movies = ParseMovies(result); // Analisa o JSON em uma lista de objetos Movie
+                movies = ParseMovies(result);
+
                 MovieListBox.Items.Clear();
 
-                // Adiciona os filmes à ListBox
+                if (movies.Count == 0)
+                {
+                    MessageBox.Show("No movies found for the given query.");
+                    return;
+                }
+
                 foreach (var movie in movies)
                 {
                     MovieListBox.Items.Add($"{movie.Title} ({movie.Year})");
@@ -72,38 +92,40 @@ namespace MovieAPI
             }
         }
 
-        // Evento para exibir os detalhes do filme e o encarte
+        // Event to display movie details and the poster
         private async void MovieListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MovieListBox.SelectedIndex >= 0) // Verifica se há um item selecionado
+            if (MovieListBox.SelectedIndex < 0) return;
+
+            var selectedMovie = movies[MovieListBox.SelectedIndex];
+
+            try
             {
-                var selectedMovie = movies[MovieListBox.SelectedIndex]; // Obtém o filme da lista usando o índice
+                LoadPoster(selectedMovie.Poster);
 
-                // Exibe o encarte no PictureBox
-                try
-                {
-                    PosterPictureBox.Load(selectedMovie.Poster);
-                }
-                catch
-                {
-                    PosterPictureBox.Image = null; // Caso a URL do encarte seja inválida
-                }
-
-                // Carrega os detalhes do filme
-                string imdbId = selectedMovie.ImdbID;
-                try
-                {
-                    string details = await movieAPI.GetMovieDetailsAsync(imdbId);
-                    DisplayMovieDetails(details);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error fetching movie details: {ex.Message}");
-                }
+                string details = await movieAPI.GetMovieDetailsAsync(selectedMovie.ImdbID);
+                DisplayMovieDetails(details);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error fetching movie details: {ex.Message}");
             }
         }
 
-        // Método para exibir os detalhes do filme na interface do usuário
+        // Method to load the movie poster
+        private void LoadPoster(string posterUrl)
+        {
+            try
+            {
+                PosterPictureBox.Load(posterUrl);
+            }
+            catch
+            {
+                PosterPictureBox.Image = null;
+            }
+        }
+
+        // Method to display movie details in the user interface
         private void DisplayMovieDetails(string details)
         {
             var movieDetails = JsonConvert.DeserializeObject<dynamic>(details);
@@ -121,34 +143,45 @@ namespace MovieAPI
             }
         }
 
-        // Evento para adicionar filme à watchlist
+        // Event to add a movie to the watchlist
         private void Add_btn_Click(object sender, EventArgs e)
         {
-            if (MovieListBox.SelectedIndex >= 0)
-            {
-                var selectedMovie = movies[MovieListBox.SelectedIndex]; // Usa o índice para acessar o filme
-                string movieEntry = $"{selectedMovie.Title} ({selectedMovie.Year})";
+            if (MovieListBox.SelectedIndex < 0) return;
 
-                if (!watchlist.Contains(movieEntry))
-                {
-                    watchlist.Add(movieEntry);
-                    WatchListBox.Items.Add(movieEntry); // Adiciona o filme à ListBox de watchlist
-                }
-                else
-                {
-                    MessageBox.Show("Movie already in watchlist!");
-                }
+            var selectedMovie = movies[MovieListBox.SelectedIndex];
+            string movieEntry = $"{selectedMovie.Title} ({selectedMovie.Year})";
+
+            if (!watchlist.Contains(movieEntry))
+            {
+                watchlist.Add(movieEntry);
+                WatchListBox.Items.Add(movieEntry);
+            }
+            else
+            {
+                MessageBox.Show("Movie already in watchlist!");
             }
         }
 
+        // Method to update the favorites display
+        private void UpdateFavoritesDisplay()
+        {
+            FavoritesListBox.Items.Clear();
+            foreach (string movie in favoriteMovies)
+            {
+                FavoritesListBox.Items.Add(movie);
+            }
+        }
+
+        /*
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            // Initialize form components or states
         }
+        */
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+            // Placeholder for label click event
         }
     }
 }
